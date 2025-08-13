@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FairyTales.tv - Magical Interactive Adventures!</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.0.0/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.0.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@400;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Comic Neue', cursive;
             background: linear-gradient(45deg, #FF6B9D, #4ECDC4, #FFE66D, #FF6B35);
@@ -22,20 +24,19 @@
             color: #2C3E50;
             overflow-x: hidden;
         }
-
+        
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Floating Characters */
+        
         .floating-character {
             position: fixed;
             font-size: 3rem;
@@ -43,18 +44,17 @@
             z-index: 1;
             opacity: 0.7;
         }
-
+        
         .char-1 { top: 10%; left: 5%; animation-delay: 0s; }
         .char-2 { top: 20%; right: 10%; animation-delay: 2s; }
         .char-3 { bottom: 20%; left: 8%; animation-delay: 4s; }
         .char-4 { bottom: 10%; right: 15%; animation-delay: 1s; }
-
+        
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
         }
-
-        /* Header */
+        
         header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(15px);
@@ -65,13 +65,13 @@
             z-index: 100;
             border-bottom: 4px solid #FF6B9D;
         }
-
+        
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             font-family: 'Fredoka One', cursive;
             font-size: 2.5rem;
@@ -82,18 +82,18 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             animation: bounce 2s ease-in-out infinite;
         }
-
+        
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
-
+        
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
+        
         .nav-links a {
             text-decoration: none;
             color: #2C3E50;
@@ -105,7 +105,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .nav-links a::before {
             content: '';
             position: absolute;
@@ -116,22 +116,22 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
             transition: left 0.5s;
         }
-
+        
         .nav-links a:hover::before {
             left: 100%;
         }
-
+        
         .nav-links a:hover {
             color: #FF6B9D;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
         }
-
+        
         .auth-buttons {
             display: flex;
             gap: 1rem;
         }
-
+        
         .btn {
             padding: 1rem 2rem;
             border: none;
@@ -148,29 +148,28 @@
             overflow: hidden;
             font-family: 'Comic Neue', cursive;
         }
-
+        
         .btn-primary {
             background: linear-gradient(45deg, #FF6B9D, #4ECDC4);
             color: white;
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
         }
-
+        
         .btn-secondary {
             background: linear-gradient(45deg, #FFE66D, #FF6B35);
             color: #2C3E50;
             box-shadow: 0 4px 15px rgba(255, 230, 109, 0.4);
         }
-
+        
         .btn:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
         }
-
+        
         .btn:active {
             transform: translateY(-1px) scale(1.02);
         }
-
-        /* Sparkle Animation */
+        
         .btn::after {
             content: '✨';
             position: absolute;
@@ -180,32 +179,29 @@
             transform: translate(-50%, -50%);
             animation: sparkle 0.6s ease-out;
         }
-
+        
         @keyframes sparkle {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0);
             }
             50% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
             }
             100% {
                 opacity: 0;
                 transform: translate(-50%, -50%) scale(1.5);
             }
         }
-
-        /* Main Content Areas */
+        
         .main-content {
             display: none;
         }
-
+        
         .main-content.active {
             display: block;
             animation: fadeInUp 0.8s ease-out;
         }
-
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -216,8 +212,7 @@
                 transform: translateY(0);
             }
         }
-
-        /* Hero Section */
+        
         .hero {
             text-align: center;
             padding: 4rem 0;
@@ -225,7 +220,7 @@
             position: relative;
             z-index: 10;
         }
-
+        
         .hero h1 {
             font-family: 'Fredoka One', cursive;
             font-size: 4rem;
@@ -233,19 +228,19 @@
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
             animation: textGlow 3s ease-in-out infinite;
         }
-
+        
         @keyframes textGlow {
             0%, 100% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); }
             50% { text-shadow: 3px 3px 20px rgba(255, 255, 255, 0.8); }
         }
-
+        
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-
+        
         .hero-cta {
             background: linear-gradient(45deg, #FF6B9D, #4ECDC4, #FFE66D);
             color: white;
@@ -261,18 +256,12 @@
             box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
             animation: pulse 2s ease-in-out infinite;
         }
-
+        
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-
-        .hero-cta:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 12px 40px rgba(255, 107, 157, 0.6);
-        }
-
-        /* Learning Benefits */
+        
         .learning-section {
             background: rgba(255, 255, 255, 0.9);
             padding: 4rem 2rem;
@@ -281,15 +270,16 @@
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
-
+        
         .learning-title {
             font-family: 'Fredoka One', cursive;
             font-size: 3rem;
             color: #FF6B9D;
             margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             animation: rainbow 3s linear infinite;
         }
-
+        
         @keyframes rainbow {
             0% { color: #FF6B9D; }
             25% { color: #4ECDC4; }
@@ -297,14 +287,14 @@
             75% { color: #FF6B35; }
             100% { color: #FF6B9D; }
         }
-
+        
         .learning-benefits {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
+        
         .benefit-card {
             background: linear-gradient(135deg, #ffffff, #f8f9ff);
             padding: 2rem;
@@ -314,7 +304,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .benefit-card::before {
             content: '';
             position: absolute;
@@ -322,52 +312,51 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 107, 157, 0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 157, 0.1));
             transform: rotate(45deg);
             transition: all 0.3s;
         }
-
+        
         .benefit-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
         }
-
+        
         .benefit-card:hover::before {
             animation: shine 0.8s ease-in-out;
         }
-
+        
         @keyframes shine {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
-
+        
         .benefit-icon {
             font-size: 4rem;
             margin-bottom: 1rem;
             animation: wiggle 2s ease-in-out infinite;
         }
-
+        
         @keyframes wiggle {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(5deg); }
             75% { transform: rotate(-5deg); }
         }
-
+        
         .benefit-card h3 {
             font-family: 'Fredoka One', cursive;
             font-size: 1.5rem;
             color: #2C3E50;
             margin-bottom: 1rem;
         }
-
-        /* Features Grid */
+        
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
-
+        
         .feature-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
@@ -379,7 +368,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .feature-card::after {
             content: '';
             position: absolute;
@@ -391,16 +380,16 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-
+        
         .feature-card:hover::after {
             opacity: 1;
         }
-
+        
         .feature-card:hover {
             transform: translateY(-15px) scale(1.03);
             box-shadow: 0 20px 50px rgba(255, 107, 157, 0.4);
         }
-
+        
         .feature-icon {
             width: 80px;
             height: 80px;
@@ -415,12 +404,12 @@
             position: relative;
             z-index: 1;
         }
-
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
+        
         .feature-card h3 {
             font-family: 'Fredoka One', cursive;
             font-size: 1.8rem;
@@ -430,7 +419,7 @@
             position: relative;
             z-index: 1;
         }
-
+        
         .feature-card p {
             color: white;
             font-size: 1.1rem;
@@ -440,38 +429,33 @@
             position: relative;
             z-index: 1;
         }
-
-        /* Dashboard */
+        
         .dashboard {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 2rem 0;
         }
-
+        
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
         }
-
+        
         .dashboard-header h2 {
             font-family: 'Fredoka One', cursive;
             font-size: 2.5rem;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-
+        
         .user-profile {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-
+        
         .avatar {
             width: 60px;
             height: 60px;
@@ -486,87 +470,152 @@
             border: 4px solid white;
             animation: avatarGlow 2s ease-in-out infinite;
         }
-
+        
         @keyframes avatarGlow {
             0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
             50% { box-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
         }
-
+        
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
-
+        
         .content-card {
-            background: linear-gradient(135deg, #ffffff, #f8f9ff);
+            background: linear-gradient(135deg, #ffffff, #f0f8ff);
             border-radius: 20px;
             padding: 2rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-card::before {
+            content: '📚✨';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            animation: decorationFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes decorationFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .story-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #2C3E50;
+            font-weight: 600;
+            margin: 2rem 0;
+            text-align: justify;
+        }
+        
+        .choice-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .choice-btn {
+            background: linear-gradient(45deg, #FFE66D, #FF6B35);
+            color: #2C3E50;
+            border: 3px solid #FF6B35;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .choice-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .story-display {
+            background: linear-gradient(135deg, #ffffff, #f0f8ff);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
             border: 3px solid #FF6B9D;
             position: relative;
             overflow: hidden;
         }
-
-        .content-card::before {
-            content: '⭐';
+        
+        .story-display::before {
+            content: '📚✨';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            animation: twinkle 2s ease-in-out infinite;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            animation: decorationFloat 3s ease-in-out infinite;
         }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        
+        .story-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #2C3E50;
+            font-weight: 600;
+            margin: 2rem 0;
+            text-align: justify;
         }
-
-        .content-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
-        }
-
-        .story-thumbnail {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #FF6B9D, #4ECDC4, #FFE66D);
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
+        
+        .choice-buttons {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            animation: colorShift 4s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-
-        @keyframes colorShift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(90deg); }
+        
+        .choice-btn {
+            background: linear-gradient(45deg, #FFE66D, #FF6B35);
+            color: #2C3E50;
+            border: 3px solid #FF6B35;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-
-        .story-thumbnail::after {
-            content: '';
+        
+        .choice-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .magic-particle {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s ease-in-out infinite;
+            width: 4px;
+            height: 4px;
+            background: #FFE66D;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: magicFloat 4s linear infinite;
         }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        
+        @keyframes magicFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1);
+            }
         }
-
-        /* Story Creator */
+        
         .story-creator {
             background: linear-gradient(135deg, #ffffff, #f0f8ff);
             border-radius: 25px;
@@ -577,7 +626,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .story-creator::before {
             content: '🎨✨🎭🌟';
             position: absolute;
@@ -586,12 +635,7 @@
             font-size: 2rem;
             animation: decorationFloat 3s ease-in-out infinite;
         }
-
-        @keyframes decorationFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
+        
         .creator-title {
             font-family: 'Fredoka One', cursive;
             font-size: 2.5rem;
@@ -600,12 +644,12 @@
             margin-bottom: 2rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-
+        
         .form-group {
             margin-bottom: 2rem;
             position: relative;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 0.8rem;
@@ -614,7 +658,7 @@
             color: #2C3E50;
             font-family: 'Fredoka One', cursive;
         }
-
+        
         .form-control {
             width: 100%;
             padding: 1.2rem;
@@ -626,21 +670,20 @@
             transition: all 0.3s;
             background: linear-gradient(135deg, #ffffff, #f8f9ff);
         }
-
+        
         .form-control:focus {
             outline: none;
             border-color: #4ECDC4;
             box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
             transform: scale(1.02);
         }
-
+        
         .settings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-
-        /* Modal */
+        
         .modal {
             display: none;
             position: fixed;
@@ -652,13 +695,13 @@
             z-index: 1000;
             backdrop-filter: blur(5px);
         }
-
+        
         .modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
+        
         .modal-content {
             background: linear-gradient(135deg, #ffffff, #f0f8ff);
             border-radius: 25px;
@@ -671,7 +714,7 @@
             position: relative;
             animation: modalPop 0.5s ease-out;
         }
-
+        
         @keyframes modalPop {
             0% {
                 opacity: 0;
@@ -682,7 +725,7 @@
                 transform: scale(1) translateY(0);
             }
         }
-
+        
         .modal-content h2 {
             font-family: 'Fredoka One', cursive;
             font-size: 2rem;
@@ -690,15 +733,14 @@
             text-align: center;
             margin-bottom: 2rem;
         }
-
-        /* Subscription Tiers */
+        
         .subscription-tiers {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
-
+        
         .tier-card {
             background: linear-gradient(135deg, #ffffff, #f8f9ff);
             border-radius: 25px;
@@ -710,13 +752,13 @@
             border: 4px solid #4ECDC4;
             transition: all 0.4s;
         }
-
+        
         .tier-card.premium {
             border: 4px solid #FF6B9D;
             transform: scale(1.05);
             background: linear-gradient(135deg, #fff0f5, #f0fff0);
         }
-
+        
         .tier-card.premium::before {
             content: "🌟 Most Popular! 🌟";
             position: absolute;
@@ -732,24 +774,24 @@
             font-family: 'Fredoka One', cursive;
             animation: glow 2s ease-in-out infinite;
         }
-
+        
         @keyframes glow {
             0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
             50% { box-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
         }
-
+        
         .tier-card:hover {
             transform: translateY(-10px) scale(1.03);
             box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
         }
-
+        
         .tier-card h3 {
             font-family: 'Fredoka One', cursive;
             font-size: 2rem;
             color: #2C3E50;
             margin-bottom: 1rem;
         }
-
+        
         .price {
             font-family: 'Fredoka One', cursive;
             font-size: 3rem;
@@ -760,13 +802,13 @@
             background-clip: text;
             margin: 1.5rem 0;
         }
-
+        
         .features-list {
             list-style: none;
             text-align: left;
             margin: 2rem 0;
         }
-
+        
         .features-list li {
             padding: 0.8rem 0;
             display: flex;
@@ -775,12 +817,12 @@
             font-size: 1.1rem;
             font-weight: 600;
         }
-
+        
         .features-list li::before {
             content: "🎉";
             font-size: 1.2rem;
         }
-
+        
         /* Loading Animation */
         .loading {
             display: inline-block;
@@ -791,7 +833,7 @@
             border-top-color: #FF6B9D;
             animation: spin 1s ease-in-out infinite;
         }
-
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -807,95 +849,8 @@
                 gap: 1rem;
                 text-align: center;
             }
-
             .floating-character {
                 display: none;
-            }
-        }
-
-        /* Interactive Story Display */
-        .story-display {
-            background: linear-gradient(135deg, #ffffff, #f0f8ff);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 3px solid #FF6B9D;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .story-display::before {
-            content: '📚✨';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 2rem;
-            animation: bookFloat 2s ease-in-out infinite;
-        }
-
-        @keyframes bookFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(5deg); }
-        }
-
-        .story-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #2C3E50;
-            font-weight: 600;
-            margin: 2rem 0;
-            text-align: justify;
-        }
-
-        .choice-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .choice-btn {
-            background: linear-gradient(45deg, #FFE66D, #FF6B35);
-            color: #2C3E50;
-            border: 3px solid #FF6B35;
-            padding: 1rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Comic Neue', cursive;
-        }
-
-        .choice-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Magic Particles */
-        .magic-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFE66D;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: magicFloat 4s linear infinite;
-        }
-
-        @keyframes magicFloat {
-            0% {
-                opacity: 0;
-                transform: translateY(100vh) scale(0);
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) scale(1);
             }
         }
     </style>
@@ -941,11 +896,11 @@
         <section id="home" class="main-content active">
             <div class="container">
                 <div class="hero">
-                    <h1>🌟 Create Magical Adventures! 🌟</h1>
+                    <h1>🌟 Create Magical Adventures! ✨</h1>
                     <p>Where AI brings your child's imagination to life in interactive fairytales!</p>
                     <a href="#" class="hero-cta" onclick="showModal('signupModal')">🚀 Start Creating Magic!</a>
                 </div>
-
+                
                 <!-- Learning Benefits Section -->
                 <div class="learning-section">
                     <h2 class="learning-title">🎓 Learning Through Play! 🎓</h2>
@@ -966,7 +921,7 @@
                         <div class="benefit-card">
                             <div class="benefit-icon">🎭</div>
                             <h3>Decision Making</h3>
-                            <p>Choose-your-own-adventure format helps children practice making decisions and understanding consequences.</p>
+                            <p>Your child makes choices that change the story! Every decision leads to new magical paths and exciting outcomes.</p>
                         </div>
                         <div class="benefit-card">
                             <div class="benefit-icon">🌍</div>
@@ -985,7 +940,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="features">
                     <div class="feature-card">
                         <div class="feature-icon">🤖</div>
@@ -1023,18 +978,15 @@
 
         <!-- Stories Dashboard -->
         <section id="stories" class="main-content">
-            <div class="dashboard">
-                <div class="container">
-                    <div class="dashboard-header">
-                        <h2>📚 Your Magical Story Collection! ✨</h2>
-                        <button class="btn btn-primary" onclick="showSection('create')">
-                            🎨 Create New Adventure!
-                        </button>
-                    </div>
-
-                    <div class="content-grid" id="stories-grid">
-                        <!-- Stories will be populated here -->
-                    </div>
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2>📚 Your Magical Story Collection! ✨</h2>
+                    <button class="btn btn-primary" onclick="showSection('create')">
+                        🎨 Create New Adventure!
+                    </button>
+                </div>
+                <div class="content-grid" id="stories-grid">
+                    <!-- Stories will be populated here -->
                 </div>
             </div>
         </section>
@@ -1049,7 +1001,6 @@
                             Tell us about your adventure and watch the magic happen! 🌟
                         </p>
                     </div>
-
                     <div class="story-creator">
                         <h3 class="creator-title">🧚‍♀️ Story Magic Builder 🧚‍♂️</h3>
                         <form id="story-form">
@@ -1074,7 +1025,7 @@
                                         <option value="adventure">🗺️ Treasure Hunt Adventure</option>
                                         <option value="friendship">🤝 Friendship & Kindness</option>
                                         <option value="magic">✨ Magic & Fantasy Kingdom</option>
-                                        <option value="animals">🦋 Animal Friends Safari</option>
+                                        <option value="animals">🐾 Animal Friends Safari</option>
                                         <option value="space">🚀 Space Explorer Mission</option>
                                         <option value="underwater">🐠 Underwater Ocean Quest</option>
                                         <option value="superhero">🦸‍♀️ Superhero Adventures</option>
@@ -1115,17 +1066,14 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="story-interests">🎯 Special Interests (Optional)</label>
                                 <input type="text" id="story-interests" class="form-control" placeholder="e.g., dinosaurs, princesses, robots, pirates, unicorns">
                             </div>
-
                             <div class="form-group">
                                 <label for="story-setting">🏰 Magical Setting (Optional)</label>
-                                <input type="text" id="story-setting" class="form-control" placeholder="e.g., enchanted forest, crystal castle, pirate ship, space station">
+                                <input type="text" id="story-setting" class="form-control" placeholder="e.g., enchanted forest, crystal castle, pirate ship">
                             </div>
-
                             <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.3rem; padding: 1.5rem;">
                                 <span id="create-btn-text">🪄 Generate My Magical Story! ✨</span>
                                 <span id="create-btn-loading" style="display: none;" class="loading"></span>
@@ -1146,7 +1094,6 @@
                             Unlock unlimited creativity and learning adventures! 🚀
                         </p>
                     </div>
-
                     <div class="subscription-tiers">
                         <div class="tier-card">
                             <h3>🆓 Free Explorer</h3>
@@ -1158,9 +1105,10 @@
                                 <li>Community story sharing</li>
                                 <li>Safe browsing experience</li>
                             </ul>
-                            <button class="btn btn-secondary" style="width: 100%;">Current Plan</button>
+                            <button class="btn btn-secondary" style="width: 100%;">
+                                Current Plan
+                            </button>
                         </div>
-
                         <div class="tier-card premium">
                             <h3>🌟 Magic Premium</h3>
                             <div class="price">£9.99<span style="font-size: 1rem;">/month</span></div>
@@ -1175,12 +1123,11 @@
                                 <li>Character voice options</li>
                                 <li>Custom story illustrations</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="subscribeToPlan('premium')">
+                            <button class="btn btn-primary" onclick="subscribeToPlan('premium')">
                                 ✨ Upgrade to Premium Magic!
                             </button>
                         </div>
-
-                        <div class="tier-card">
+                        <div class="tier-card family">
                             <h3>👨‍👩‍👧‍👦 Family Kingdom</h3>
                             <div class="price">£19.99<span style="font-size: 1rem;">/month</span></div>
                             <ul class="features-list">
@@ -1194,7 +1141,7 @@
                                 <li>Custom family avatars</li>
                                 <li>Sibling story collaborations</li>
                             </ul>
-                            <button class="btn btn-primary" style="width: 100%;" onclick="subscribeToPlan('family')">
+                            <button class="btn btn-primary" onclick="subscribeToPlan('family')">
                                 🏰 Choose Family Kingdom!
                             </button>
                         </div>
@@ -1221,7 +1168,7 @@
                 <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">
                     🚀 Enter the Magic Kingdom!
                 </button>
-                <button type="button" class="btn btn-secondary" style="width: 100%;" onclick="closeModal('loginModal')">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('loginModal')">
                     ❌ Maybe Later
                 </button>
             </form>
@@ -1252,7 +1199,7 @@
                 <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">
                     ✨ Create My Magic Account!
                 </button>
-                <button type="button" class="btn btn-secondary" style="width: 100%;" onclick="closeModal('signupModal')">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('signupModal')">
                     ❌ Maybe Later
                 </button>
             </form>
@@ -1282,9 +1229,7 @@
         // Initialize Application
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Lucide icons
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            lucide.createIcons();
             
             // Check for existing user session
             const savedUser = localStorage.getItem('fairytales_user');
@@ -1293,47 +1238,17 @@
                 showUserInterface();
                 loadUserStories();
             }
-
             // Load sample stories if none exist
             if (!localStorage.getItem('fairytales_stories')) {
                 initializeSampleStories();
             }
-
+            
             // Create magic particles
             createMagicParticles();
             
-            // Add sparkle effects to buttons
+            // Add sparkle effects
             addSparkleEffects();
         });
-
-        // Create floating magic particles
-        function createMagicParticles() {
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    const particle = document.createElement('div');
-                    particle.className = 'magic-particle';
-                    particle.style.left = Math.random() * 100 + 'vw';
-                    particle.style.background = ['#FFE66D', '#FF6B9D', '#4ECDC4', '#FF6B35'][Math.floor(Math.random() * 4)];
-                    document.body.appendChild(particle);
-                    
-                    setTimeout(() => {
-                        particle.remove();
-                    }, 4000);
-                }
-            }, 500);
-        }
-
-        // Add sparkle effects to buttons
-        function addSparkleEffects() {
-            document.querySelectorAll('.btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    this.classList.add('sparkle');
-                    setTimeout(() => {
-                        this.classList.remove('sparkle');
-                    }, 600);
-                });
-            });
-        }
 
         // Navigation Functions
         function showSection(sectionName) {
@@ -1350,9 +1265,6 @@
             if (sectionName === 'stories') {
                 displayStories();
             }
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Modal Functions
@@ -1370,8 +1282,8 @@
         function showUserInterface() {
             document.getElementById('auth-section').style.display = 'none';
             document.getElementById('user-section').style.display = 'flex';
-            document.getElementById('user-name').textContent = currentUser.name;
             document.getElementById('user-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('user-name').textContent = currentUser.name;
         }
 
         function hideUserInterface() {
@@ -1406,15 +1318,15 @@
                 localStorage.setItem('fairytales_user', JSON.stringify(currentUser));
                 showUserInterface();
                 loadUserStories();
+                
                 closeModal('loginModal');
-                showSection('stories');
                 
                 // Reset form
                 document.getElementById('login-form').reset();
                 
                 // Show welcome message
                 setTimeout(() => {
-                    alert('🎉 Welcome to your magical story kingdom! Let\'s create some adventures! ✨');
+                    alert('🎉 Welcome to your magical story kingdom! Let\'s start creating adventures! ✨');
                 }, 500);
             }
         });
@@ -1444,7 +1356,6 @@
                 showUserInterface();
                 loadUserStories();
                 closeModal('signupModal');
-                showSection('stories');
                 
                 // Reset form
                 document.getElementById('signup-form').reset();
@@ -1476,7 +1387,7 @@
             };
             
             if (!formData.childName || !formData.age || !formData.theme || !formData.length) {
-                alert('🎯 Please fill in the required magical details! We need your hero\'s name, age, theme, and story length! ✨');
+                alert('🎯 Please fill in the required magical details! We need your hero\'s name, age, theme, and story length!');
                 return;
             }
             
@@ -1516,78 +1427,59 @@
         function createAIStory(formData) {
             const storyTemplates = {
                 adventure: [
-                    `🗺️ Once upon a time, brave {name} discovered a shimmering treasure map hidden in their grandmother's attic! The map showed the way to the legendary Golden Acorn in the {setting}. With a backpack full of courage and a heart full of wonder, {name} set off on the adventure of a lifetime!`,
-                    `⚡ {name} woke up to find a mysterious glowing compass on their windowsill! The compass pointed toward the {setting}, where an ancient treasure awaited someone brave enough to seek it. Our hero grabbed their adventure gear and followed the magical compass into the unknown!`
+                    `🗺️ Once upon a time, brave {name} discovered a shimmering path in the Enchanted Rainbow Forest...`,
+                    `🚢 Commander {name} received an urgent message from the Galactic Council! A friendly alien civilization in the {setting}, needed help...`
                 ],
                 friendship: [
-                    `🌈 In the wonderful {setting}, {name} heard soft crying coming from behind a colorful flower bush. There sat a lonely {interests}, with no friends to play with. {name}'s kind heart knew exactly what to do - it was time to make a new friend!`,
-                    `🤗 {name} moved to a new neighborhood and felt a little nervous about making friends. But in the magical {setting}, they discovered that friendship blooms in the most unexpected places, especially when you're kind and open to others!`
+                    `🤝 In the wonderful {setting}, {name} heard soft crying coming from behind a colorful flower bush. There sat a lonely {interests}, with no friends to play with...`,
+                    `🤗 {name} moved to a new neighborhood and felt a little nervous about making friends. But in the magical {setting}, they discovered that friendship blooms in the most unexpected places...`
                 ],
                 magic: [
-                    `✨ While exploring the {setting}, {name} stumbled upon a sparkling magic wand buried under rainbow leaves! As soon as they picked it up, the wand began to glow with incredible power. But with great magic comes great responsibility!`,
+                    `✨ While exploring the {setting}, {name} stumbled upon a sparkling magic wand buried under rainbow leaves! As soon as they picked it up, the wand began to glow with incredible power...`,
                     `🧙‍♀️ The wise old wizard of {setting} had been waiting for someone special like {name} to arrive. "You have been chosen," the wizard said with twinkling eyes, "to learn the ancient magic that protects our realm!"`
                 ],
                 animals: [
-                    `🦋 In the beautiful {setting}, {name} discovered they had a amazing gift - they could understand and speak with all the animals! A wise {interests} approached them and said, "We've been waiting for you, young friend. The animal kingdom needs your help!"`,
-                    `🐾 {name} found an injured {interests} in the {setting} and gently helped nurse it back to health. Little did they know, this act of kindness would lead to the most incredible animal adventure ever!`
+                    `🐾 In the beautiful {setting}, {name} discovered they could understand and speak with all the animals! A wise {interests} approached them and said, "We've been waiting for you, young friend. The animal kingdom needs your help!"`,
+                    `🐠 {name} found an injured {interests} in the {setting} and gently helped nurse it back to health. Little did they know, this act of kindness would lead to the most incredible animal adventure ever!`
                 ],
                 space: [
-                    `🚀 Commander {name} received an urgent message from the Galactic Council! A friendly alien civilization in the {setting} needed help, and {name} was the perfect space explorer for this cosmic mission!`,
-                    `⭐ While stargazing in their backyard, {name} saw a beautiful shooting star that landed nearby. It wasn't a star at all - it was a tiny spacecraft with a message: "Help us explore the wonders of {setting}!"`
+                    `🚀 Commander {name} received an urgent message from the Galactic Council! A friendly alien civilization in the {setting}, needed help...`,
+                    `🌌 While stargazing in their backyard, {name} saw a beautiful shooting star that landed nearby. It wasn't a star at all - it was a tiny spacecraft with a message: "Help us explore the wonders of {setting}!"`
                 ],
                 underwater: [
-                    `🌊 During a family beach trip, {name} found a mysterious seashell that granted them the magical ability to breathe underwater! The ocean welcomed them into the spectacular {setting} beneath the waves!`,
-                    `🐠 A friendly dolphin named Splash chose {name} as their human friend and guide to the underwater {setting}, where mermaids, sea turtles, and colorful fish lived in harmony!`
+                    `🐠 During a family beach trip, {name} found a mysterious seashell that granted them the magical ability to breathe underwater! The ocean welcomed them into the spectacular {setting} beneath the waves!`,
+                    `🐠 A friendly dolphin named Splash chose {name} as their human friend and guide to the underwater {setting}, where mermaids, sea turtles, and colorful fish lived in harmony.`
                 ],
                 superhero: [
                     `🦸‍♀️ One morning, {name} woke up with incredible superpowers! They could fly, had super strength, and could help anyone in need. The city needed a hero, and {name} was ready to answer the call!`,
-                    `⚡ When {name} put on their grandmother's old cape, something magical happened - they became the superhero the {setting} had been waiting for!`
+                    `🦸‍♀️ When {name} put on their grandmother's old cape, something magical happened - they became the superhero the {setting} had been waiting for!`
                 ],
                 dinosaur: [
-                    `🦕 While on a school field trip, {name} discovered a hidden time portal that led directly to the age of dinosaurs! In the prehistoric {setting}, they befriended a gentle baby T-Rex who needed help finding its family!`,
-                    `🦴 {name} found a magical dinosaur egg in their backyard that hatched into the cutest little {interests}! Together, they traveled back in time to the amazing {setting} where dinosaurs roamed free!`
+                    `🦕 While on a school field trip, {name} discovered a hidden time portal that led directly to the age of dinosaurs! In the prehistoric {setting}, they befriended a baby T-Rex who needed help finding its family!`,
+                    `🦕 {name} found a magical dinosaur egg in their backyard that hatched into the cutest little {interests}! Together, they traveled back in time to the amazing {setting} where dinosaurs roamed free!`
                 ]
             };
-
-            const moralLessons = {
-                kindness: `Through their magical journey, {name} learned that being kind to others - whether they're big or small, different or similar - always creates the most beautiful friendships and the happiest endings! 💕`,
-                courage: `{name} discovered that being brave doesn't mean you're never scared - it means doing the right thing even when your heart is beating fast! Real heroes feel fear but choose to help others anyway! 🦁`,
-                honesty: `In their adventure, {name} learned that telling the truth, even when it's difficult, always leads to the best outcomes. Honesty builds trust and makes friendships stronger! 🤗`,
-                sharing: `{name} found out that sharing their treasures, adventures, and joy with others made everything twice as magical and ten times more fun! The best adventures are shared adventures! 🎁`,
-                perseverance: `When things got tough, {name} remembered that giving up is never the answer. With determination and a positive attitude, any challenge can become an exciting puzzle to solve! 💪`,
-                teamwork: `{name} learned that working together with friends makes everyone stronger, smarter, and more creative. The best solutions come from combining everyone's special talents! 🤝`,
-                respect: `Through meeting many different characters, {name} discovered that everyone is special in their own way, and respecting differences makes the world a more colorful and wonderful place! 🌈`
-            };
-
-            const template = storyTemplates[formData.theme][Math.floor(Math.random() * storyTemplates[formData.theme].length)];
+            const storyTemplate = storyTemplates[formData.theme][Math.floor(Math.random() * storyTemplates[formData.theme].length)];
             const setting = formData.setting || getDefaultSetting(formData.theme);
             const interests = formData.interests || getDefaultInterests(formData.theme);
             
-            let storyText = template
+            let storyText = storyTemplate
                 .replace(/{name}/g, formData.childName)
                 .replace(/{setting}/g, setting)
                 .replace(/{interests}/g, interests);
-
-            // Add interactive choices based on theme
-            const choices = generateStoryChoices(formData.theme, formData.childName);
-            
             // Add middle content based on length
             if (formData.length === 'medium' || formData.length === 'long') {
                 storyText += ` \n\n🌟 Along the magical journey, ${formData.childName} encountered wonderful creatures and had to make important decisions that would shape their adventure!`;
             }
-            
             if (formData.length === 'long') {
-                storyText += ` \n\n✨ The epic quest took ${formData.childName} through three enchanted realms, each filled with new friends, exciting challenges, and valuable lessons!`;
+                storyText += ` \n\n✨ The epic quest took ${formData.childName} through three enchanted realms, each filled with new magical friends, exciting challenges, and valuable lessons!`;
             }
-
             // Add moral lesson
             if (formData.moral && moralLessons[formData.moral]) {
                 storyText += ` \n\n${moralLessons[formData.moral].replace(/{name}/g, formData.childName)}`;
             }
-
             // Add magical ending
             storyText += ` \n\n🎉 And so, ${formData.childName} returned home with a heart full of joy, pockets full of magical memories, and the knowledge that they were truly special! The adventures would continue tomorrow, because magic never ends when you believe in yourself! ✨ \n\n**THE END** 📖`;
-
             return {
                 id: Date.now(),
                 title: `${formData.childName}'s ${getThemeTitle(formData.theme)} Adventure! ✨`,
@@ -1600,46 +1492,254 @@
                 moral: formData.moral,
                 createdAt: new Date().toISOString(),
                 thumbnail: getThemeEmoji(formData.theme),
-                choices: choices,
+                choices: generateStoryChoices(formData.theme, formData.childName),
                 isInteractive: true
             };
         }
 
-        function generateStoryChoices(theme, name) {
-            const choiceTemplates = {
-                adventure: [
-                    {
-                        question: `🤔 ${name} reaches a fork in the path. Which way should they go?`,
-                        options: [
-                            { text: "🌳 Take the forest path with singing birds", result: "The birds guide you to a hidden treasure!" },
-                            { text: "🏔️ Climb the rocky mountain trail", result: "You discover a secret cave with glittering crystals!" },
-                            { text: "🌊 Follow the stream with dancing fish", result: "The fish show you an underwater shortcut!" }
-                        ]
-                    }
-                ],
-                friendship: [
-                    {
-                        question: `💭 ${name} sees someone sitting alone. What should they do?`,
-                        options: [
-                            { text: "🤗 Walk over and say hello", result: "You make a wonderful new friend!" },
-                            { text: "🎁 Share your favorite snack", result: "Kindness creates an instant bond!" },
-                            { text: "🎮 Invite them to play a fun game", result: "Playing together brings joy to both of you!" }
-                        ]
-                    }
-                ],
-                magic: [
-                    {
-                        question: `✨ ${name} finds three magic potions. Which one should they choose?`,
-                        options: [
-                            { text: "💙 The blue potion of wisdom", result: "You gain the knowledge to help everyone!" },
-                            { text: "💚 The green potion of healing", result: "You can heal any creature in need!" },
-                            { text: "💜 The purple potion of friendship", result: "You can understand and talk to all beings!" }
-                        ]
-                    }
-                ]
-            };
+        function saveStory(story) {
+            let stories = JSON.parse(localStorage.getItem('fairytales_stories') || '[]');
+            story.userId = currentUser.id;
+            stories.push(story);
+            localStorage.setItem('fairytales_stories', JSON.stringify(stories));
+            userStories = stories.filter(s => s.userId === currentUser.id);
+        }
 
-            return choiceTemplates[theme] || choiceTemplates.adventure;
+        function displayStories() {
+            if (!currentUser) {
+                return;
+            }
+            
+            const allStories = JSON.parse(localStorage.getItem('fairytales_stories') || '[]');
+            userStories = allStories.filter(story => story.userId === currentUser.id);
+            
+            const storiesGrid = document.getElementById('stories-grid');
+            
+            if (userStories.length === 0) {
+                storiesGrid.innerHTML = `
+                    <div class="content-card" style="text-align: center;">
+                        <div class="story-thumbnail">📚</div>
+                        <h3>Welcome to Your Story Kingdom!</h3>
+                        <p style="font-size: 1.3rem; color: #2C3E50; font-weight: 700; margin-bottom: 2rem;">
+                            Create your first magical story and watch your imagination come to life!
+                        </p>
+                        <button class="btn btn-primary" onclick="showSection('create')">
+                            🎨 Create First Story!
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            storiesGrid.innerHTML = userStories.map(story => `
+                <div class="content-card" onclick="displayInteractiveStory(${JSON.stringify(story).replace(/"/g, '&quot;')}")">
+                    <div class="story-thumbnail">${story.thumbnail}</div>
+                    <h3>${story.title}</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p><strong>🎭 Theme:</strong> ${story.theme}</p>
+                        <p><strong>🎂 Age:</strong> ${story.age}</p>
+                        <p><strong>⏱️ Length:</strong> ${story.length}</p>
+                        <p><strong>📅 Created:</strong> ${new Date(story.createdAt).toLocaleDateString()}</p>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">
+                        📖 Read Adventure!
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function displayInteractiveStory(story) {
+            currentStory = story;
+            storyStep = 0;
+            
+            let storyHtml = `
+                <h2 style="font-family: 'Fredoka One', cursive; color: #FF6B9D; text-align: center; margin-bottom: 2rem;">
+                    ${story.title}
+                </h2>
+                <div class="story-text">
+                    ${formatStoryText(story.content)}
+                </div>
+            `;
+            
+            // Add interactive choices if available
+            if (story.choices && story.choices.length > 0 && storyStep < story.choices.length) {
+                const currentChoice = story.choices[storyStep];
+                storyHtml += `
+                    <div style="background: linear-gradient(45deg, #FFE66D, #FF6B35); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                        <h3 style="font-family: 'Fredoka One', cursive; color: #2C3E50; margin-bottom: 1.5rem;">
+                            ${currentChoice.question}
+                        </h3>
+                        <div class="choice-buttons">
+                            ${currentChoice.options.map((option, index) => `
+                                <button class="choice-btn" onclick="makeStoryChoice(${index})">
+                                    ${option.text}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Add story controls
+            storyHtml += `
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="playStoryAudio('${story.id}')">
+                        🎵 Listen to Story
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareStory('${story.id}')">
+                        📤 Share Magic
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadStory('${story.id}')">
+                        📥 Save Story
+                    </button>
+                    <button class="btn btn-primary" onclick="restartStory()">
+                        🔄 Read Again
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('story-content').innerHTML = storyHtml;
+            showModal('storyModal');
+        }
+
+        function makeStoryChoice(choiceIndex) {
+            if (!currentStory || !currentStory.choices || storyStep >= currentStory.choices.length) {
+                return;
+            }
+            
+            const currentChoice = currentStory.choices[storyStep];
+            const selectedOption = currentChoice.options[choiceIndex];
+            
+            // Show the result of the choice
+            const resultHtml = `
+                <div style="background: linear-gradient(45deg, #FFE66D, #FF6B35); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                    <h3 style="font-family: 'Fredoka One', cursive; color: #2C3E50; margin-bottom: 1.5rem;">
+                        ✨ Your Choice Result! ✨
+                    </h3>
+                    <p style="font-size: 1.2rem; font-weight: 600;">
+                        ${selectedOption.result}
+                    </p>
+                </div>
+            `;
+            
+            const choiceButtons = document.querySelector('#story-content .choice-buttons').parentElement;
+            choiceButtons.innerHTML = resultHtml;
+            
+            storyStep++;
+            
+            // Continue with next choice or end story
+            setTimeout(() => {
+                if (storyStep < currentStory.choices.length) {
+                    displayInteractiveStory(currentStory);
+                } else {
+                    // Story completed
+                    choiceButtons.innerHTML += `
+                        <div style="background: linear-gradient(45deg, #FFE66D, #FF6B35); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+                            <h3 style="font-family: 'Fredoka One', cursive; color: #2C3E50; margin-bottom: 1.5rem;">
+                                🎉 Amazing Adventure Complete! 🎉
+                            </h3>
+                            <p style="font-size: 1.1rem; font-weight: 600;">
+                                You made wonderful choices, ${currentStory.childName}! Every decision showed your kind heart and brave spirit!
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 2000);
+        }
+
+        function playStoryAudio(storyId) {
+            // Show audio simulation
+            const audioMessages = [
+                "🎵 Playing magical story narration...",
+                "🎭 Listen as your story comes alive with character voices!",
+                "🎶 Enjoy the enchanting background music!"
+            ];
+            
+            const randomMessage = audioMessages[Math.floor(Math.random() * audioMessages.length)];
+            alert(randomMessage + '\n\n(This feature would integrate with AI text-to-speech services to create magical audio experiences!)');
+        }
+
+        function shareStory(storyId) {
+            const shareMessages = [
+                "📤 Sharing your magical story with friends and family!",
+                "✨ Your adventure is ready to inspire other young storytellers!",
+                "🌟 Story shared to your favorite social media platforms!",
+                "💫 Friends can now enjoy your creative masterpiece!"
+            ];
+            
+            const randomMessage = shareMessages[Math.floor(Math.random() * shareMessages.length)];
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Magical Story from FairyTales.tv!',
+                    text: 'Check out this amazing AI-generated interactive adventure! 🧚‍♀️✨',
+                    url: window.location.href
+                });
+            } else {
+                alert(randomMessage + '\n\n(This would integrate with social media APIs for easy sharing!)');
+            }
+        }
+
+        function downloadStory(storyId) {
+            const story = userStories.find(s => s.id == storyId) || currentStory;
+            if (story) {
+                const storyContent = `${story.title}\n\n${story.content}\n\n**THE END** 📖`;
+                const blob = new Blob([storyContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${story.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                setTimeout(() => {
+                    alert('📥 Your magical story has been saved! You can read it anytime, even without internet! ✨');
+                }, 500);
+            }
+        }
+
+        function subscribeToPlan(planType) {
+            if (!currentUser) {
+                showModal('loginModal');
+                return;
+            }
+            
+            const plans = {
+                premium: {
+                    name: 'Magic Premium',
+                    price: '£9.99/month',
+                    features: 'unlimited stories, premium voices, and interactive adventures!'
+                },
+                family: {
+                    name: 'Family Kingdom',
+                    price: '£19.99/month',
+                    features: 'everything in Premium plus 6 child profiles and family sharing!'
+                }
+            };
+            
+            const plan = plans[planType];
+            if (confirm(`🌟 Ready to unlock ${plan.name} for ${plan.price}?\n\nYou'll get ${plan.features}`)) {
+                currentUser.plan = planType;
+                localStorage.setItem('fairytales_user', JSON.stringify(currentUser));
+                
+                // Show success celebration
+                setTimeout(() => {
+                    alert(`🎉 CONGRATULATIONS! 🎉\n\nWelcome to ${plan.name}!\n\nYour magical powers have been upgraded! Start creating unlimited adventures right now! ✨`);
+                    showSection('create');
+                }, 500);
+            }
+        }
+
+        function restartStory() {
+            if (currentStory) {
+                storyStep = 0;
+                displayInteractiveStory(currentStory);
+            }
+        }
+
+        // Utility Functions
+        function formatStoryText(text) {
+            return text.split('\n\n').map(paragraph => `<p>${paragraph.trim()}</p>`).join('');
         }
 
         function getDefaultSetting(theme) {
@@ -1673,7 +1773,7 @@
         function getThemeTitle(theme) {
             const titles = {
                 adventure: 'Treasure Hunt',
-                friendship: 'Friendship Magic',
+                friendship: 'Friendship & Kindness',
                 magic: 'Magical Kingdom',
                 animals: 'Animal Safari',
                 space: 'Space Explorer',
@@ -1684,327 +1784,33 @@
             return titles[theme] || 'Magical';
         }
 
-        function getThemeEmoji(theme) {
-            const emojis = {
-                adventure: '🗺️',
-                friendship: '🤝',
-                magic: '✨',
-                animals: '🦋',
-                space: '🚀',
-                underwater: '🐠',
-                superhero: '🦸‍♀️',
-                dinosaur: '🦕'
-            };
-            return emojis[theme] || '📚';
-        }
-
-        // Interactive Story Display
-        function displayInteractiveStory(story) {
-            currentStory = story;
-            storyStep = 0;
-            
-            let storyHtml = `
-                <h2 style="font-family: 'Fredoka One', cursive; color: #FF6B9D; text-align: center; margin-bottom: 2rem;">
-                    ${story.title}
-                </h2>
-                <div class="story-text">
-                    ${formatStoryText(story.content)}
-                </div>
-            `;
-
-            // Add interactive choices if available
-            if (story.choices && story.choices.length > 0 && storyStep < story.choices.length) {
-                const currentChoice = story.choices[storyStep];
-                storyHtml += `
-                    <div style="background: linear-gradient(135deg, #FFE66D, #FF6B35); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
-                        <h3 style="font-family: 'Fredoka One', cursive; color: #2C3E50; text-align: center; margin-bottom: 1.5rem;">
-                            ${currentChoice.question}
-                        </h3>
-                        <div class="choice-buttons">
-                            ${currentChoice.options.map((option, index) => 
-                                `<button class="choice-btn" onclick="makeStoryChoice(${index})">${option.text}</button>`
-                            ).join('')}
-                        </div>
-                    </div>
-                `;
-            }
-
-            // Add story controls
-            storyHtml += `
-                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; justify-content: center;">
-                    <button class="btn btn-primary" onclick="playStoryAudio('${story.id}')">
-                        🎵 Listen to Story
-                    </button>
-                    <button class="btn btn-secondary" onclick="shareStory('${story.id}')">
-                        📤 Share Magic
-                    </button>
-                    <button class="btn btn-secondary" onclick="downloadStory('${story.id}')">
-                        📥 Save Story
-                    </button>
-                    <button class="btn btn-primary" onclick="restartStory()">
-                        🔄 Read Again
-                    </button>
-                </div>
-            `;
-
-            document.getElementById('story-content').innerHTML = storyHtml;
-            showModal('storyModal');
-        }
-
-        function makeStoryChoice(choiceIndex) {
-            if (!currentStory || !currentStory.choices || storyStep >= currentStory.choices.length) return;
-            
-            const currentChoice = currentStory.choices[storyStep];
-            const selectedOption = currentChoice.options[choiceIndex];
-            
-            // Show the result of the choice
-            const resultHtml = `
-                <div style="background: linear-gradient(135deg, #4ECDC4, #44A08D); color: white; padding: 2rem; border-radius: 20px; margin: 1rem 0; text-align: center;">
-                    <h3 style="font-family: 'Fredoka One', cursive; margin-bottom: 1rem;">✨ Your Choice Result! ✨</h3>
-                    <p style="font-size: 1.2rem; font-weight: 600;">${selectedOption.result}</p>
-                </div>
-            `;
-            
-            // Add the result to the story display
-            const storyContent = document.getElementById('story-content');
-            const choiceButtons = storyContent.querySelector('.choice-buttons').parentElement;
-            choiceButtons.innerHTML = resultHtml;
-            
-            storyStep++;
-            
-            // Continue with next choice or end story
-            setTimeout(() => {
-                if (storyStep < currentStory.choices.length) {
-                    displayInteractiveStory(currentStory);
-                } else {
-                    // Story completed
-                    choiceButtons.innerHTML += `
-                        <div style="background: linear-gradient(135deg, #FF6B9D, #4ECDC4); color: white; padding: 2rem; border-radius: 20px; margin: 1rem 0; text-align: center;">
-                            <h3 style="font-family: 'Fredoka One', cursive;">🎉 Amazing Adventure Complete! 🎉</h3>
-                            <p style="font-size: 1.1rem;">You made wonderful choices, ${currentStory.childName}! Every decision showed your kind heart and brave spirit!</p>
-                        </div>
-                    `;
+        function createMagicParticles() {
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const particle = document.createElement('div');
+                    particle.textContent = '✨';
+                    particle.className = 'magic-particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = Math.random() * 100 + 'vh';
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 4000);
                 }
-            }, 2000);
+            }, 500);
         }
 
-        function restartStory() {
-            if (currentStory) {
-                storyStep = 0;
-                displayInteractiveStory(currentStory);
-            }
-        }
-
-        function formatStoryText(text) {
-            // Convert line breaks to paragraphs and add emoji highlights
-            return text
-                .split('\n\n')
-                .map(paragraph => `<p>${paragraph.trim()}</p>`)
-                .join('');
-        }
-
-        // Story Management
-        function saveStory(story) {
-            let stories = JSON.parse(localStorage.getItem('fairytales_stories') || '[]');
-            story.userId = currentUser.id;
-            stories.push(story);
-            localStorage.setItem('fairytales_stories', JSON.stringify(stories));
-            userStories = stories.filter(s => s.userId === currentUser.id);
-        }
-
-        function loadUserStories() {
-            if (!currentUser) return;
-            
-            const allStories = JSON.parse(localStorage.getItem('fairytales_stories') || '[]');
-            userStories = allStories.filter(story => story.userId === currentUser.id);
-        }
-
-        function displayStories() {
-            const storiesGrid = document.getElementById('stories-grid');
-            
-            if (!currentUser) {
-                storiesGrid.innerHTML = `
-                    <div class="content-card" style="text-align: center;">
-                        <div class="story-thumbnail">🧚‍♀️</div>
-                        <h3>Welcome to FairyTales.tv!</h3>
-                        <p>Join our magical community to create and save your own interactive adventures!</p>
-                        <button class="btn btn-primary" onclick="showModal('loginModal')" style="margin-top: 1rem;">
-                            ✨ Join the Magic!
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            if (userStories.length === 0) {
-                storiesGrid.innerHTML = `
-                    <div class="content-card" style="text-align: center;">
-                        <div class="story-thumbnail">🎨</div>
-                        <h3>Your Story Adventure Begins!</h3>
-                        <p>Create your first magical story and watch your imagination come to life!</p>
-                        <button class="btn btn-primary" onclick="showSection('create')" style="margin-top: 1rem;">
-                            🪄 Create First Story!
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            storiesGrid.innerHTML = userStories.map(story => `
-                <div class="content-card" onclick="displayInteractiveStory(${JSON.stringify(story).replace(/"/g, '&quot;')})">
-                    <div class="story-thumbnail">${story.thumbnail}</div>
-                    <h3 style="color: #2C3E50; margin-bottom: 1rem;">${story.title}</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <p><strong>🎭 Theme:</strong> ${story.theme}</p>
-                        <p><strong>⏱️ Length:</strong> ${story.length}</p>
-                        <p><strong>🎂 Age:</strong> ${story.age}</p>
-                        <p><strong>📅 Created:</strong> ${new Date(story.createdAt).toLocaleDateString()}</p>
-                    </div>
-                    <button class="btn btn-primary" style="width: 100%;">
-                        📖 Read Adventure!
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function playStoryAudio(storyId) {
-            // Show audio simulation
-            const audioMessages = [
-                "🎵 Playing magical story narration...",
-                "🎭 Listen as your story comes alive with character voices!",
-                "🎶 Enjoy the enchanting background music!",
-                "🔊 Story audio is now playing in magical surround sound!"
-            ];
-            
-            const randomMessage = audioMessages[Math.floor(Math.random() * audioMessages.length)];
-            alert(randomMessage + '\n\n(This feature would integrate with AI text-to-speech services to create magical audio experiences!)');
-        }
-
-        function shareStory(storyId) {
-            const shareMessages = [
-                "📤 Sharing your magical story with friends and family!",
-                "✨ Your adventure is ready to inspire other young storytellers!",
-                "🌟 Story shared to your favorite social media platforms!",
-                "💫 Friends can now enjoy your creative masterpiece!"
-            ];
-            
-            const randomMessage = shareMessages[Math.floor(Math.random() * shareMessages.length)];
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'My Magical Story from FairyTales.tv!',
-                    text: 'Check out this amazing AI-generated interactive adventure! 🧚‍♀️✨',
-                    url: window.location.href
+        function addSparkleEffects() {
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.add('sparkle');
+                    setTimeout(() => this.classList.remove('sparkle'), 600);
                 });
-            } else {
-                alert(randomMessage + '\n\n(This would integrate with social media APIs for easy sharing!)');
-            }
-        }
-
-        function downloadStory(storyId) {
-            const story = userStories.find(s => s.id == storyId) || currentStory;
-            if (story) {
-                const storyContent = `${story.title}\n\n${story.content}\n\nCreated with love at FairyTales.tv! 🧚‍♀️✨`;
-                const blob = new Blob([storyContent], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `${story.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`;
-                a.click();
-                URL.revokeObjectURL(url);
-                
-                setTimeout(() => {
-                    alert('📥 Your magical story has been saved! You can read it anytime, even without internet! ✨');
-                }, 500);
-            }
-        }
-
-        // Subscription Management
-        function subscribeToPlan(planType) {
-            if (!currentUser) {
-                showModal('loginModal');
-                return;
-            }
-            
-            const plans = {
-                premium: { 
-                    name: 'Magic Premium', 
-                    price: '£9.99/month',
-                    features: 'unlimited stories, premium voices, and interactive adventures!'
-                },
-                family: { 
-                    name: 'Family Kingdom', 
-                    price: '£19.99/month',
-                    features: 'everything in Premium plus 6 child profiles and family sharing!'
-                }
-            };
-            
-            const plan = plans[planType];
-            if (confirm(`🌟 Ready to unlock ${plan.name} for ${plan.price}?\n\nYou'll get ${plan.features}\n\nClick OK to continue to secure payment! ✨`)) {
-                currentUser.plan = planType;
-                localStorage.setItem('fairytales_user', JSON.stringify(currentUser));
-                
-                // Show success celebration
-                setTimeout(() => {
-                    alert(`🎉 CONGRATULATIONS! 🎉\n\nWelcome to ${plan.name}!\n\nYour magical powers have been upgraded! Start creating unlimited adventures right now! ✨🧚‍♀️`);
-                    showSection('create');
-                }, 500);
-            }
-        }
-
-        // Initialize Sample Stories
-        function initializeSampleStories() {
-            const sampleStories = [
-                {
-                    id: 1,
-                    title: "🌟 Emma's Magic Forest Adventure!",
-                    content: "Once upon a time, brave Emma discovered a shimmering path in the Enchanted Rainbow Forest...",
-                    theme: "adventure",
-                    childName: "Emma",
-                    age: "5-7",
-                    length: "medium",
-                    language: "en",
-                    moral: "courage",
-                    createdAt: new Date().toISOString(),
-                    thumbnail: "🗺️",
-                    userId: "demo"
-                }
-            ];
-            localStorage.setItem('fairytales_stories', JSON.stringify(sampleStories));
-        }
-
-        // Utility Functions
-        function closeAllModals() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.classList.remove('active');
             });
-            document.body.style.overflow = 'auto';
-        }
-
-        // Event Listeners
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeAllModals();
-            }
-        });
-
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-
-        // Analytics tracking (placeholder)
-        function trackEvent(eventName, data) {
-            console.log('🎯 Event tracked:', eventName, data);
         }
 
         // Track story creation
         function trackStoryCreation(storyData) {
-            trackEvent('story_created', {
+            console.log('🎯 Event tracked:', {
                 theme: storyData.theme,
                 age: storyData.age,
                 length: storyData.length,
@@ -2013,79 +1819,11 @@
             });
         }
 
-        // Create demo story for testing
-        function createDemoStory() {
-            if (!currentUser) {
-                alert('🔐 Please log in first to create stories! ✨');
-                return;
-            }
-            
-            const demoStory = {
-                id: Date.now(),
-                title: `🌟 ${currentUser.name}'s Demo Magical Adventure! ✨`,
-                content: `🧚‍♀️ Once upon a time, brave ${currentUser.name} discovered the amazing world of FairyTales.tv! In this enchanted digital realm, stories came to life with the help of AI magic and endless creativity. ${currentUser.name} learned that with imagination, kindness, and a little bit of technology, any dream could become a wonderful reality! From that day forward, ${currentUser.name} created magical adventures every day, inspiring children around the world! 🌟 The End! ✨`,
-                theme: 'magic',
-                childName: currentUser.name,
-                age: '5-7',
-                length: 'short',
-                language: 'en',
-                moral: 'creativity',
-                createdAt: new Date().toISOString(),
-                thumbnail: '✨',
-                choices: [{
-                    question: `What should ${currentUser.name} do next?`,
-                    options: [
-                        { text: "🎨 Create another story", result: "Creativity flows like magic!" },
-                        { text: "📚 Read more adventures", result: "Knowledge is the best treasure!" },
-                        { text: "🤝 Share with friends", result: "Sharing doubles the joy!" }
-                    ]
-                }],
-                isInteractive: true
-            };
-            
-            saveStory(demoStory);
-            displayStories();
-            displayInteractiveStory(demoStory);
-        }
-
-        // PWA Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('✨ ServiceWorker registration successful');
-                    })
-                    .catch(function(err) {
-                        console.log('❌ ServiceWorker registration failed:', err);
-                    });
-            });
-        }
-
-        // Add some fun easter eggs
-        let clickCount = 0;
-        document.querySelector('.logo').addEventListener('click', function() {
-            clickCount++;
-            if (clickCount >= 5) {
-                alert('🎉 You found the secret fairy magic! ✨🧚‍♀️🦄 You get bonus creativity points! 🌟');
-                clickCount = 0;
-                // Add some extra sparkles
-                for (let i = 0; i < 10; i++) {
-                    setTimeout(() => {
-                        const sparkle = document.createElement('div');
-                        sparkle.textContent = '✨';
-                        sparkle.style.position = 'fixed';
-                        sparkle.style.left = Math.random() * window.innerWidth + 'px';
-                        sparkle.style.top = Math.random() * window.innerHeight + 'px';
-                        sparkle.style.fontSize = '2rem';
-                        sparkle.style.pointerEvents = 'none';
-                        sparkle.style.zIndex = '9999';
-                        document.body.appendChild(sparkle);
-                        
-                        setTimeout(() => sparkle.remove(), 2000);
-                    }, i * 100);
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+        // Initialize sample stories
+        function initializeSampleStories() {
+            if (!localStorage.getItem('fairytales_stories')) {
+                const sampleStories = [
+                    {
+                        id: 1,
+                        title: "Emma's Enchanted Forest Adventure",
+                        content: "Once upon a time, brave Emma discovered a shimmering path in the Enchanted Rainbow Forest...\n\nAlong her magical journey, Emma encountered wonderful creatures and had to make important decisions that shaped her adventure!",
